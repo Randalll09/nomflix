@@ -82,9 +82,7 @@ const Input = styled(motion.input)`
   background-color: ${({ theme }) => theme.black.lighter};
 `;
 
-const Div = styled.div`
-  margin-top: 80px;
-`;
+const Div = styled.div``;
 
 const logoVar = {
   normal: {
@@ -131,7 +129,7 @@ const Header = () => {
         navAni.start('top');
       }
     });
-  }, [scrollY]);
+  }, [scrollY, navAni]);
 
   return (
     <>

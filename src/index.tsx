@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
   margin:0;
   box-sizing: border-box;
 }
+body{
+  background-color: ${({ theme }) => theme.black.veryDark};
+  overflow-x: hidden;
+}
 li{
   list-style: none;
 }
@@ -25,8 +29,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <GlobalStyles />
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <App />
     </ThemeProvider>
   </React.StrictMode>
