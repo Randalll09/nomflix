@@ -14,6 +14,7 @@ const router = createBrowserRouter([
       { path: '', element: <Home /> },
       { path: '/tv', element: <Tv /> },
       { path: '/search', element: <Search /> },
+      { path: '/movies/:id', element: <Home /> },
     ],
   },
 ]);

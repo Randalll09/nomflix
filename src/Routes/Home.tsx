@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { getMovies, IGetMoviesResult } from '../api';
 import { makeImgPath } from './utils';
 import Slider from '../Components/Slider';
+import { useMatch, useParams } from 'react-router';
+import MovieModal from '../Components/MovieModal';
+import { AnimatePresence } from 'framer-motion';
 
 const Div = styled.div`
   height: 200vh;
@@ -20,6 +23,8 @@ const Banner = styled.div<{ bg: string }>`
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
     url(${({ bg }) => bg});
   padding-bottom: 150px;
+  background-position: center;
+  background-size: cover;
 `;
 
 const Loader = styled.div`
@@ -43,6 +48,8 @@ const Home = () => {
     ['movies', 'nowPlaying'],
     getMovies
   );
+  const movieMatch = useMatch('/movies/:id');
+  const params = useParams();
   return (
     <Div>
       {isLoading ? (
@@ -54,6 +61,9 @@ const Home = () => {
             <Overview>{data?.results[0].overview}</Overview>
           </Banner>
           <Slider data={data ? data.results : []} />
+          <AnimatePresence>
+            {movieMatch ? <MovieModal id={params.id ? params.id : ''} /> : null}
+          </AnimatePresence>
         </>
       )}
     </Div>
